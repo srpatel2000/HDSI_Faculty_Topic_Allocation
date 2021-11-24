@@ -1,0 +1,4 @@
+{
+    "dockerhub-id": "srpatelstu/HDSI_Faculty_Topic_Allocation:latest",
+    "build-script": "python run.py test test_data.csv"
+}
