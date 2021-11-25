@@ -167,6 +167,8 @@ def main(argv):
    	 path = r'/results/model_prediction/'
      time_author_topic.to_csv(path + 'time_author_topic.csv', index=False)
 
+     print(time_author_topic)
+
 
 if __name__ == "__main__":
    main(sys.argv[0])
