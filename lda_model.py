@@ -164,7 +164,8 @@ def main(argv):
              year += 1
      time_author_topic = df_document_topic
 
-     return time_author_topic
+   	 path = r'results/model_predictions/'
+     time_author_topic.to_csv(path+'time_author_topic.csv', index=False)
 
 
 if __name__ == "__main__":
