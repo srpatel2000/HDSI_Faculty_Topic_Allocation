@@ -5,7 +5,7 @@ import json
 
 def main(targets):
 
-	print(targets)
+	# print(targets)
 
 	if "test" in targets:
 		if not os.path.isdir('models'):
@@ -17,7 +17,7 @@ def main(targets):
 
 		data = targets[1]
 
-		os.system("python models/lda_model.py" + data)
+		os.system("python3 models/lda_model.py" + data)
 
 
 if __name__ == '__main__':
