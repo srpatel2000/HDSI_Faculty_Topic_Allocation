@@ -15,7 +15,7 @@ def main(targets):
 		if not os.path.isdir('results/model_prediction'):
 			os.mkdir('results/model_prediction')
 
-		data = targets[2]
+		data = targets[1]
 
 		os.system("python models/lda_model.py" + data)
 
