@@ -7,7 +7,7 @@ def main(targets):
 
 	if "test" in targets:
         if not os.path.isdir('models'):
-            print("No models available.")
+        	print("No models available.")
             sys.exit(0)
         
         if not os.path.isdir('results/model_prediction'):
