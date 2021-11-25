@@ -17,7 +17,7 @@ def main(targets):
 
 		data = targets[1]
 
-		os.system("python3 models/lda_model.py" + data)
+		os.system("python3 models/lda_model.py " + data)
 
 
 if __name__ == '__main__':
