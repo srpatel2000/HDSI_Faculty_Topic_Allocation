@@ -31,9 +31,10 @@ from warnings import filterwarnings
 filterwarnings('ignore')
 
 
-
 def main(argv):
 
+    print("here")
+    
     hdsi_faculty = pd.read_csv('test/testdata/test_data.csv')
 
     # data preprocssing
@@ -167,9 +168,6 @@ def main(argv):
 
     path = r'results/model_prediction/'
     time_author_topic.to_csv(path + 'time_author_topic.csv', index=False)
-
-    ### Sankey Diagram
-
 
 if __name__ == "__main__":
     main(sys.argv[0])

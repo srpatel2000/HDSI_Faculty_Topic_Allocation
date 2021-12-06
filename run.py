@@ -38,7 +38,7 @@ def main(targets):
 		data = targets[1]
 
 		os.system("python3 models/lda_model.py " + data)
-
+		# os.system("python3 models/dashboard.py ")
 
 if __name__ == '__main__':
     if not os.path.isdir('results'):
