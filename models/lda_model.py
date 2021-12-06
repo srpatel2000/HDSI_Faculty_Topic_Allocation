@@ -1,7 +1,5 @@
 # lda model
 
-# lda model
-
 import pandas as pd
 import sys
 
@@ -169,6 +167,8 @@ def main(argv):
 
     path = r'results/model_prediction/'
     time_author_topic.to_csv(path + 'time_author_topic.csv', index=False)
+
+    ### Sankey Diagram
 
 
 if __name__ == "__main__":
