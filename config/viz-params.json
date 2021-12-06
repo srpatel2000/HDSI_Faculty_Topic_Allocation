@@ -1,0 +1,14 @@
+{
+    "dataframe_path": "notesbooks/data/dataframe.pkl",
+    "processed_data_path": "notesbooks/data/all_docs.pkl",
+    "models_path": "notesbooks/data/models.pkl",
+    "results_path": "notesbooks/data/results.pkl",
+    "names_path": "notesbooks/data/names.pkl",
+    "authors_path": "notesbooks/data/authors.pkl",
+    "missing_author_years_path": "notesbooks/data/missing_author_years.pkl",
+    "number_of_authors": 50,
+    "raw_data_path": "notebooks/final_hdsi_faculty_updated.csv",
+    "topics_range": [5,10,15],
+    "folder": "notesbooks/data",
+    "org_data": "final_hdsi_faculty_updated.csv"
+}
