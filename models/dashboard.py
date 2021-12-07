@@ -445,7 +445,7 @@ def main():
     )
 
     def update_graph(value, topic, author, words, previous_fig):
-        if len(previous_fig['data'][0]['node']['color']) != value + 50:
+        if len(previous_fig['data'][0]['node']['color']) != value + 3:
             figs[threshold][value].update_traces(node = dict(color = ['#666699' for i in range(len(labels[value]))]), link = dict(color = ['rgba(204, 204, 204, .5)' for i in range(len(sources[threshold][value]))]))
             return figs[threshold][value], [{'label' : f'Topic {topic}: {top_words[value][topic]}', 'value' : topic} for topic in range(value)]
 
@@ -454,9 +454,9 @@ def main():
             for word in words:
                 doc_vec[0][locations[word]] += 1
             relations = np.round(models[f'{value}'].transform(doc_vec), 3).tolist()[0]
-            opacity = {(i+50) : relation for i, relation in enumerate(relations) if relation > .1}
+            opacity = {(i+3) : relation for i, relation in enumerate(relations) if relation > .1}
             node_colors = ['#666699' if (i not in opacity.keys()) else f'rgba(255, 255, 0, {opacity[i]})' for i in range(len(labels[value]))]
-            valid_targets = [positions[value][f'Topic{i-50}'] for i in opacity.keys()]
+            valid_targets = [positions[value][f'Topic{i-3}'] for i in opacity.keys()]
             link_colors = ['rgba(204, 204, 204, .5)' if target not in valid_targets else f'rgba(255, 255, 0, .5)' for target in targets[threshold][value]]
             figs[threshold][value].update_traces(node = dict(color = node_colors), link = dict(color = link_colors)),
             return figs[threshold][value], [{'label' : f'Topic {topic}: {top_words[value][topic]}', 'value' : topic} for topic in range(value)]
