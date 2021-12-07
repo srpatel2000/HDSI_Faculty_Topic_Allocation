@@ -39,7 +39,8 @@ def main(argv):
 
     print("here")
     
-    test_data = pd.read_csv('test/testdata/test_data.csv')
+    # test_data = pd.read_csv('test/testdata/test_data.csv')
+    test_data = pd.read_csv('notebooks/final_hdsi_faculty_updated.csv')
 
     def lemmatize_stemming(text):
         return WordNetLemmatizer().lemmatize(text, pos='v')
@@ -57,7 +58,7 @@ def main(argv):
 
         data = input_data
         data = data[data['year'] > 2014]
-        data['abstract'] = data['abstract'].apply(lambda x: '' if type(x) == float else x)
+        data["abstract"].fillna(data["title"], inplace=True) # if no abstract, replace w/ title of article
 
         def standardize_abstract(abstract):
             abstract = abstract.replace('\n', ' ')
@@ -121,7 +122,7 @@ def main(argv):
 
         return data, authors, all_docs, missing_author_years
 
-        
+    
     dataframe, authors, all_docs, missing_author_years = data_cleaning(test_data)
     pickle.dump(dataframe, open("test/interim/dataframe.pkl", 'wb'))
     pickle.dump(authors, open("test/interim/authors.pkl", 'wb'))
@@ -135,6 +136,7 @@ def main(argv):
     counts = countVec.fit_transform(all_docs)
     names = countVec.get_feature_names()
 
+
     # save models to pkl file
 
     models = {}
@@ -146,7 +148,15 @@ def main(argv):
         models[str(num_components)] = modeller
         results[str(num_components)] = result
 
-    print(results)
+
+    # print(results)
+
+    def display_topics(model, feature_names, no_top_words):
+        for topic_idx, topic in enumerate(model.components_):
+            print("Topic %d:" % (topic_idx))
+            print(" ".join([feature_names[i] for i in topic.argsort()[:-no_top_words - 1:-1]]))
+    
+    display_topics(modeller, names, 15)
     # path = r'results/model_prediction/'
     # results.to_csv(path + 'time_author_topic.csv', index=False)
 
