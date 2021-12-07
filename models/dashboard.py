@@ -23,7 +23,7 @@ def main():
     names_path = "test/processed/names.pkl"
     authors_path = "test/interim/authors.pkl"
     missing_author_years_path = "test/interim/missing_author_years.pkl"
-    number_of_authors = 50
+    number_of_authors = 3
     raw_data_path = "test/testdata/test_data.csv"
     topics_range = [15]
     folder = "test"
