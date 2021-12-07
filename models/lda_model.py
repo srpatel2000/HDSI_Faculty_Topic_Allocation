@@ -36,11 +36,8 @@ filterwarnings('ignore')
 
 
 def main(argv):
-
-    print("here")
     
-    # test_data = pd.read_csv('test/testdata/test_data.csv')
-    test_data = pd.read_csv('notebooks/final_hdsi_faculty_updated.csv')
+    test_data = pd.read_csv('test/testdata/test_data.csv')
 
     def lemmatize_stemming(text):
         return WordNetLemmatizer().lemmatize(text, pos='v')
@@ -130,12 +127,9 @@ def main(argv):
     pickle.dump(missing_author_years, open("test/interim/missing_author_years.pkl", 'wb'))
 
     countVec = CountVectorizer()
-
     all_docs = pickle.load(open("test/interim/all_docs.pkl", 'rb'))
-
     counts = countVec.fit_transform(all_docs)
     names = countVec.get_feature_names()
-
 
     # save models to pkl file
 
@@ -147,9 +141,6 @@ def main(argv):
         result = modeller.fit_transform(counts)
         models[str(num_components)] = modeller
         results[str(num_components)] = result
-
-
-    # print(results)
 
     def display_topics(model, feature_names, no_top_words):
         for topic_idx, topic in enumerate(model.components_):
@@ -175,7 +166,8 @@ if __name__ == "__main__":
     main(sys.argv[0])
 
 
-    # # data preprocssing
+    # ---- CODE THAT MAY BE USED DURING Q2 ----
+    # data preprocssing
     # hdsi_faculty["abstract"].fillna(hdsi_faculty["title"], inplace=True) # if no abstract, replace w/ title of article
     # hdsi_faculty = hdsi_faculty[hdsi_faculty["year"] > 2014]
     # #combining all the documents into a list by author and year:

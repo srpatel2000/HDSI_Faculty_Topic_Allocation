@@ -23,11 +23,11 @@ def main():
     names_path = "test/processed/names.pkl"
     authors_path = "test/interim/authors.pkl"
     missing_author_years_path = "test/interim/missing_author_years.pkl"
-    number_of_authors = 3
+    number_of_authors = 50
     raw_data_path = "test/testdata/test_data.csv"
     topics_range = [15]
     folder = "test"
-    org_data = "test_data_new.csv"
+    org_data = "test_data.csv"
 
     data = pickle.load(open(dataframe_path, 'rb'))
 
@@ -48,8 +48,6 @@ def main():
         num_topics : ["Topic" + str(i) for i in range(num_topics)] for num_topics in num_topics_list
     }
 
-    print(topicnames)
-
     # index names
     docnames = ["Doc" + str(i) for i in range(len(all_docs))]
 
@@ -65,9 +63,6 @@ def main():
 
     for num_topics, df in df_document_topic.items():
         df['dominant_topic'] = dominant_topic[num_topics]
-            
-
-
 
     author_list = []
     year_list = []
@@ -174,14 +169,10 @@ def main():
         the_filter = filtered[threshold][num_topics]
         for topic in range(num_topics):
             relevant = the_filter[the_filter[f'Topic{topic}'] != 0].index.to_list()
-    #         print(relevant)
             to_append = data_frame[data_frame[f'{topic}_relevance'] > 0].reset_index()
-            #   print(to_append.columns)
             to_append = to_append[to_append['HDSI_author'].isin(relevant)].reset_index()
             top_5s.append(to_append)
         return top_5s
-        
-    print(dataframes)
 
     tops = {
         threshold : {num_topics : create_top_list(dataframes[threshold][num_topics], num_topics, threshold) for num_topics in num_topics_list} for threshold in [.1]
@@ -199,12 +190,12 @@ def main():
     link_labels = {}
     for num_topics in topics_range:
         link_labels[num_topics] = labels[num_topics].copy()
-        link_labels[num_topics][number_of_authors:] = display_topics_list(models[f'{num_topics}'], names, 10)
+        link_labels[num_topics][number_of_authors:] = display_topics_list(models[f'{num_topics}'], names, 15)
 
     lst_of_topics = topics_range.copy()
 
     heights = {
-        lst_of_topics[0] : 1000,
+        lst_of_topics[0] : 1500,
         # lst_of_topics[1] : 1500,
         # lst_of_topics[2] : 2000,
         # lst_of_topics[3] : 2500,
@@ -285,7 +276,7 @@ def main():
     threshold = .1
     app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
 
-    topics_range = json.load(open('config/viz-params.json', 'r'))['topics_range']
+    topics_range = [15]
 
     app.layout = html.Div([
         dbc.Row([
@@ -301,7 +292,7 @@ def main():
                 'justify-content' : 'left',
                 'padding-left' : '15px'
             },
-            value=10
+            value=15
             )
         ]),
         dbc.Row([

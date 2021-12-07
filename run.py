@@ -6,25 +6,25 @@ def main(targets):
 
 	# print(targets)
 
-	# if 'data' in targets:
- #        with open('config/data-params.json') as fh:
- #            data_cfg = json.load(fh)
+	if 'data' in targets:
+		with open('config/data-params.json') as fh:
+			data_cfg = json.load(fh)
+			
+		# make the data target
+		data = get_data(**data_cfg)
 
- #        # make the data target
- #        data = get_data(**data_cfg)
+	if 'features' in targets:
+		with open('config/features-params.json') as fh:
+			feats_cfg = json.load(fh)
+		
+		feats, labels = apply_features(data, **feats_cfg)
 
- #    if 'features' in targets:
- #        with open('config/features-params.json') as fh:
- #            feats_cfg = json.load(fh)
+	if 'model' in targets:
+		with open('config/model-params.json') as fh:
+			model_cfg = json.load(fh)
 
- #        feats, labels = apply_features(data, **feats_cfg)
-
- #    if 'model' in targets:
- #        with open('config/model-params.json') as fh:
- #            model_cfg = json.load(fh)
-
- #        # make the data target
- #        model_build(feats, labels, **model_cfg)
+		# make the data target
+		model_build(feats, labels, **model_cfg)
 
 	if "test" in targets:
 		if not os.path.isdir('models'):
