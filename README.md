@@ -1,3 +1,5 @@
 # HDSI Faculty Topic Allocation
 
-When running this code, please SSH into DSMLP, then launch the Docker image, and the port forward into the application that is being run at the end of the code. 
+Please view an overview[https://marthay01.github.io/hdsi_faculty_tool/] of this project here.
+
+
